@@ -1,7 +1,4 @@
-Aqui está a seção atualizada do `README.md`, agora incluindo **todos os serviços que serão inicializados** e **URLs para acesso**:
-
----
-
+Sistema de GESTÃO ACADÊMICA - Este projeto faz parte de um teste técnico. 
 ## 🔐 Segurança e execução
 
 Este projeto isola as credenciais sensíveis fora do versionamento, seguindo boas práticas de segurança.
