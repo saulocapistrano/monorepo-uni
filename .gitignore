@@ -12,4 +12,5 @@ dist/
 
 # Outros
 .env
+.env.secret
 .DS_Store
