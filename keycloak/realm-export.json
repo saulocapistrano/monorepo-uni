@@ -1,0 +1,42 @@
+{
+  "realm": "academico-realm",
+  "enabled": true,
+  "users": [
+    {
+      "username": "admin@academico.com",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "123456"
+        }
+      ],
+      "realmRoles": ["admin"]
+    }
+  ],
+  "roles": {
+    "realm": [
+      { "name": "admin" },
+      { "name": "coordenador" },
+      { "name": "professor" },
+      { "name": "aluno" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "sso-app",
+      "enabled": true,
+      "publicClient": true,
+      "redirectUris": ["*"],
+      "webOrigins": ["*"],
+      "standardFlowEnabled": true
+    },
+    {
+      "clientId": "admin-api",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "admin-secret",
+      "serviceAccountsEnabled": true
+    }
+  ]
+}
