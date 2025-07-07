@@ -1,5 +1,4 @@
 CREATE SCHEMA IF NOT EXISTS academico;
-SET search_path TO academico;
 
 CREATE TABLE usuario (
                          id SERIAL PRIMARY KEY,
