@@ -1,4 +1,4 @@
-package br.com.desafio.manager;
+package br.com.manager;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

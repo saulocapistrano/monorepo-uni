@@ -1,0 +1,93 @@
+{
+  "realm": "export-realm",
+  "enabled": true,
+  "users": [
+    {
+      "username": "admin@academico.com",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "admin@academico.com",
+      "firstName": "Admin",
+      "lastName": "Admin",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "123456",
+          "temporary": false
+        }
+      ],
+      "requiredActions": [],
+      "realmRoles": ["admin"]
+    },
+    {
+      "username": "coordenador@academico.com",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "coordenador@academico.com",
+      "firstName": "Coordenador",
+      "lastName": "Coordenador",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "123456",
+          "temporary": false
+        }
+      ],
+      "requiredActions": [],
+      "realmRoles": ["coordenador"]
+    },
+    {
+      "username": "professor@academico.com",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "professor@academico.com",
+      "firstName": "Professor",
+      "lastName": "Docente",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "123456",
+          "temporary": false
+        }
+      ],
+      "requiredActions": [],
+      "realmRoles": ["professor"]
+    },
+    {
+      "username": "aluno@academico.com",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "aluno@academico.com",
+      "firstName": "Aluno",
+      "lastName": "Discente",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "123456",
+          "temporary": false
+        }
+      ],
+      "requiredActions": [],
+      "realmRoles": ["aluno"]
+    }
+  ],
+  "roles": {
+    "realm": [
+      { "name": "admin" },
+      { "name": "coordenador" },
+      { "name": "professor" },
+      { "name": "aluno" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "admin-api",
+      "secret": "SWahuM5nsSosgCNtcHkFbDsgxb3WXPv5",
+      "enabled": true,
+      "publicClient": false,
+      "directAccessGrantsEnabled": true,
+      "protocol": "openid-connect",
+      "redirectUris": ["*"]
+    }
+  ]
+}
