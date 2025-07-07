@@ -5,31 +5,79 @@ services:
     image: postgres:15
     container_name: postgres
     environment:
-      POSTGRES_DB: academico
-      POSTGRES_USER: academico_user
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ../postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+
   keycloak:
     image: quay.io/keycloak/keycloak:24.0.1
     container_name: keycloak
     command: start-dev --import-realm
     environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
       KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://postgres:5432/academico
-      KC_DB_USERNAME: academico_user
-      KC_DB_PASSWORD: 123456
+      KC_DB_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      KC_DB_USERNAME: ${POSTGRES_USER}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - ../keycloak:/opt/keycloak/data/import
     ports:
-      - "8080:8080"
+      - "${KEYCLOAK_PORT:-8080}:8080"
     depends_on:
       - postgres
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/localhost/8080 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  api-manager:
+    build:
+      context: ../projeto/api-manager
+      dockerfile: src/main/docker/Dockerfile.jvm
+    container_name: api-manager
+    ports:
+      - "8082:8080"
+    depends_on:
+      keycloak:
+        condition: service_healthy
+      postgres:
+        condition: service_started
+    environment:
+      - POSTGRES_DB=academico
+      - POSTGRES_USER=academico_user
+      - POSTGRES_PASSWORD=123456
+      - QUARKUS_OIDC_AUTH_SERVER_URL=http://keycloak:8080/realms/academico-realm
+      - QUARKUS_OIDC_CLIENT_ID=admin-api
+      - QUARKUS_OIDC_CREDENTIALS_SECRET=admin-secret
+      - QUARKUS_OIDC_TOKEN_AUDIENCE=admin-api
+    restart: on-failure
+
+  api-sso:
+    build:
+      context: ../projeto/api-sso
+      dockerfile: src/main/docker/Dockerfile.jvm
+    container_name: api-sso
+    ports:
+      - "8081:8080"
+    depends_on:
+      keycloak:
+        condition: service_healthy
+      postgres:
+        condition: service_started
+    environment:
+      - QUARKUS_OIDC_AUTH_SERVER_URL=http://keycloak:8080/realms/academico-realm
+      - QUARKUS_OIDC_CLIENT_ID=admin-api
+      - QUARKUS_OIDC_CREDENTIALS_SECRET=admin-secret
+      - QUARKUS_OIDC_TOKEN_AUDIENCE=admin-api
+    restart: on-failure
+
 
 volumes:
   postgres_data:
