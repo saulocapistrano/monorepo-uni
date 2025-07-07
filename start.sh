@@ -1,3 +1,8 @@
+if [[ $1 == "clean" ]]; then
+  echo "Removendo containers, volumes e redes..."
+  docker compose -f docker/docker-compose.yml down -v
+fi
+
 echo "Carregando variáveis sensíveis..."
 set -a
 source .env.secret
