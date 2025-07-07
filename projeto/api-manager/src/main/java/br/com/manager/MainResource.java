@@ -1,4 +1,4 @@
-package br.com.desafio.manager;
+package br.com.manager;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
