@@ -1,0 +1,17 @@
+<h2>{{ id ? 'Editar Disciplina' : 'Nova Disciplina' }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="salvar()">
+  <label>Código:</label>
+  <input type="text" formControlName="codigo" />
+
+  <label>Nome:</label>
+  <input type="text" formControlName="nome" />
+
+  <label>Descrição:</label>
+  <textarea formControlName="descricao"></textarea>
+
+  <label>Carga Horária:</label>
+  <input type="number" formControlName="cargaHoraria" />
+
+  <button type="submit" [disabled]="form.invalid">Salvar</button>
+</form>
