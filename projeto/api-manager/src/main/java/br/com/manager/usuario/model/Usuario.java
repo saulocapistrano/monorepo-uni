@@ -25,7 +25,7 @@ public class Usuario {
     private String email;
 
     @Column(nullable = false)
-    private String tipo; // administrador, coordenador, professor, aluno
+    private String tipo;
 
     @Column(name = "criado_em")
     private LocalDateTime criadoEm = LocalDateTime.now();
