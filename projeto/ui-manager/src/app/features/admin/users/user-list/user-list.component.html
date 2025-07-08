@@ -1,0 +1,24 @@
+  <div class="user-list">
+    <h2>Lista de Usuários</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Tipo</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.nome }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.tipo }}</td>
+          <td>
+            <button (click)="editarUsuario(usuario)">Editar</button>
+            <button (click)="excluirUsuario(usuario.id)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

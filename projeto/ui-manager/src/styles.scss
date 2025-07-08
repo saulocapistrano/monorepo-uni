@@ -1,0 +1,66 @@
+$white: #F8F9FA;
+$gray-light: #E9ECEF;
+$gray-medium: #DEE2E6;
+$gray-dark: #6C757D;
+$black-soft: #212529;
+
+$blue-academic: #3A86FF;
+$green-success: #4BB543;
+$orange-alert: #FF9E1B;
+$red-soft: #FF6B6B;
+$purple-creative: #8338EC;
+
+$blue-chart: #90E0EF;
+$green-chart: #48CAE4;
+$purple-chart: #B5179E;
+$coral-chart: #F15BB5;
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: $white;
+  color: $black-soft;
+  min-height: 100vh;
+}
+
+a {
+  color: $blue-academic;
+  text-decoration: none;
+  transition: 0.3s;
+
+  &:hover {
+    color: darken($blue-academic, 10%);
+  }
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  border: none;
+  background-color: $blue-academic;
+  color: white;
+
+  &:hover {
+    background-color: darken($blue-academic, 10%);
+  }
+}
+
+.card {
+  background-color: $gray-light;
+  border: 1px solid $gray-medium;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
