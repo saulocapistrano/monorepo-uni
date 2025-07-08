@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 interface User {
   id: number;
@@ -21,6 +22,10 @@ export class UserListComponent {
     { id: 2, nome: 'Carlos Souza', email: 'carlos@exemplo.com', tipo: 'coordenador' },
     { id: 3, nome: 'João Lima', email: 'joao@exemplo.com', tipo: 'aluno' }
   ];
+
+  constructor(private router: Router) {
+    console.log('UserListComponent construído');
+  }
 
   editarUsuario(usuario: User) {
     console.log('Editar usuário:', usuario);
