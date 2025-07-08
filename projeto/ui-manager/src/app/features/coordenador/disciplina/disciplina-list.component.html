@@ -1,0 +1,25 @@
+<h2>Disciplinas</h2>
+
+<a routerLink="novo">Nova Disciplina</a>
+
+<table>
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Nome</th>
+      <th>Carga Horária</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of disciplinas">
+      <td>{{ d.codigo }}</td>
+      <td>{{ d.nome }}</td>
+      <td>{{ d.cargaHoraria }}</td>
+      <td>
+        <a [routerLink]="[d.id, 'editar']">Editar</a> |
+        <a href="#" (click)="excluir(d.id!)">Excluir</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

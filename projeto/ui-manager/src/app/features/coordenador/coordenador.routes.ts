@@ -11,7 +11,12 @@ export const COORDENADOR_ROUTES: Routes = [
     data: { roles: ['coordenador'] },
     children: [
       { path: '', component: CoordenadorDashboardComponent },
-      { path: 'semestre', children: SEMESTRE_ROUTES }
+      { path: 'semestre', children: SEMESTRE_ROUTES },
+      {
+        path: 'disciplina',
+        loadChildren: () => import('./disciplina/disciplina.routes').then(m => m.DISCIPLINA_ROUTES)
+      },
+
     ]
   }
 ];
