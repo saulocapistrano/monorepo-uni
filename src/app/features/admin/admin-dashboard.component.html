@@ -1,0 +1,30 @@
+<div class="dashboard">
+  <section class="card">
+    <h3>Resumo</h3>
+    <ul>
+      <li><strong>Total de Usuários:</strong> 12</li>
+      <li><strong>Total de Cursos:</strong> 5</li>
+      <li><strong>Total de Disciplinas:</strong> 20</li>
+      <li><strong>Total de Semestres:</strong> 10</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h3>Ações Rápidas</h3>
+    <div class="actions">
+      <button class="btn" (click)="goTo('/admin/users/new')">+ Novo Usuário</button>
+      <button class="btn" (click)="goTo('/admin/cursos/new')">+ Novo Curso</button>
+      <button class="btn" (click)="goTo('/admin/semestres/new')">+ Novo Semestre</button>
+      <button class="btn" (click)="goTo('/admin/disciplinas/new')">+ Nova Disciplina</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3> Módulos</h3>
+    <div class="modules">
+      <button class="btn" (click)="goTo('/admin/users')">👥 Gerenciar Usuários</button>
+      <button class="btn" (click)="goTo('/admin/cursos')">📘 Gerenciar Cursos</button>
+      <button class="btn" (click)="goTo('/admin/matriz-curricular')">📋 Montar Matriz Curricular</button>
+    </div>
+  </section>
+</div>
