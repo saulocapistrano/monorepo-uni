@@ -1,0 +1,21 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { SemestreFormComponent } from './semestre-form.component';
+
+describe('SemestreFormComponent', () => {
+  let component: SemestreFormComponent;
+  let fixture: ComponentFixture<SemestreFormComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [SemestreFormComponent]
+    });
+    fixture = TestBed.createComponent(SemestreFormComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

@@ -1,0 +1,21 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { SemestreListComponent } from './semestre-list.component';
+
+describe('SemestreListComponent', () => {
+  let component: SemestreListComponent;
+  let fixture: ComponentFixture<SemestreListComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [SemestreListComponent]
+    });
+    fixture = TestBed.createComponent(SemestreListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

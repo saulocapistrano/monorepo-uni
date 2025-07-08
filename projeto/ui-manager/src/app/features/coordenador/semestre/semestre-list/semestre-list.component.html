@@ -1,0 +1,27 @@
+<h2>Semestres</h2>
+
+<button (click)="novo()">Novo Semestre</button>
+
+<div *ngIf="loading">Carregando...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<table *ngIf="semestres.length > 0">
+  <thead>
+    <tr>
+      <th>Descrição</th>
+      <th>Início</th>
+      <th>Fim</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let semestre of semestres">
+      <td>{{ semestre.descricao }}</td>
+      <td>{{ semestre.dataInicio }}</td>
+      <td>{{ semestre.dataFim }}</td>
+      <td>
+        <button (click)="deletar(semestre.id!)">Remover</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

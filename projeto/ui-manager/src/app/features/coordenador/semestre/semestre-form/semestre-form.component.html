@@ -1,0 +1,16 @@
+<h2>Novo Semestre</h2>
+
+<div *ngIf="error" style="color: red">{{ error }}</div>
+
+<form (ngSubmit)="salvar()">
+  <label>Descrição:</label>
+  <input [(ngModel)]="semestre.descricao" name="descricao" required />
+
+  <label>Data de Início:</label>
+  <input type="date" [(ngModel)]="semestre.dataInicio" name="dataInicio" required />
+
+  <label>Data de Fim:</label>
+  <input type="date" [(ngModel)]="semestre.dataFim" name="dataFim" required />
+
+  <button type="submit">Salvar</button>
+</form>

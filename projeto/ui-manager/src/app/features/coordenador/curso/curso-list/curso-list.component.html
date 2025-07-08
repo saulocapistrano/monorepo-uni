@@ -1,0 +1,25 @@
+<h2>Cursos</h2>
+
+<button (click)="novo()">Novo Curso</button>
+
+<div *ngIf="loading">Carregando...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<table *ngIf="cursos.length">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let curso of cursos">
+      <td>{{ curso.nome }}</td>
+      <td>{{ curso.descricao }}</td>
+      <td>
+        <button (click)="deletar(curso.id!)">Remover</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

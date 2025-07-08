@@ -1,0 +1,9 @@
+<div class="dashboard">
+  <h2>Área do Coordenador</h2>
+  <div class="card-grid">
+    <a class="card" *ngFor="let card of cards" [routerLink]="card.route">
+      <h3>{{ card.title }}</h3>
+      <p>{{ card.description }}</p>
+    </a>
+  </div>
+</div>
