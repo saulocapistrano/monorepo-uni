@@ -1,34 +1,31 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { User } from './user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private users: User[] = [
-    { id: '1', name: 'João Silva', email: 'joao@email.com', role: 'admin' },
-    { id: '2', name: 'Maria Souza', email: 'maria@email.com', role: 'aluno' }
-  ];
+  private readonly API = '/api/users';
 
-  getUsers(): User[] {
-    return this.users;
+  constructor(private http: HttpClient) {}
+
+  listar(): Observable<User[]> {
+    return this.http.get<User[]>(this.API);
   }
 
-  getUserById(id: string): User | undefined {
-    return this.users.find(u => u.id === id);
+  getUserById(id: string): Observable<User> {
+    return this.http.get<User>(`${this.API}/${id}`);
   }
 
-  createUser(user: User): void {
-    user.id = String(Date.now());
-    this.users.push(user);
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>(this.API, user);
   }
 
-  updateUser(id: string, user: User): void {
-    const index = this.users.findIndex(u => u.id === id);
-    if (index > -1) {
-      this.users[index] = { ...this.users[index], ...user };
-    }
+  updateUser(id: string, user: User): Observable<User> {
+    return this.http.put<User>(`${this.API}/${id}`, user);
   }
 
-  deleteUser(id: string): void {
-    this.users = this.users.filter(u => u.id !== id);
+  deleteUser(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.API}/${id}`);
   }
 }

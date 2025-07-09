@@ -1,4 +1,3 @@
-// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 import { authGuard } from './core/auth/auth.guard';
 
@@ -7,8 +6,7 @@ export const APP_ROUTES: Routes = [
   {
     path: 'admin',
     loadChildren: () =>
-      import('./features/admin/admin.routes')
-        .then(m => m.default),
+      import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES),
     canActivate: [authGuard]
   },
   {
@@ -35,13 +33,6 @@ export const APP_ROUTES: Routes = [
   {
     path: '**',
     redirectTo: 'unauthorized'
-  },
-  // {
-  //   path: 'unauthorized',
-  //   loadComponent: () => import('./core/unauthorized/unauthorized.component').then(m => m.UnauthorizedComponent)
-  // },
-  // {
-  //   path: 'error',
-  //   loadComponent: () => import('./core/error/error.component').then(m => m.ErrorComponent)
-  // }
+  }
+
 ];

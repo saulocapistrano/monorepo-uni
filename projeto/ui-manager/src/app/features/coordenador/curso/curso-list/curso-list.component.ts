@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-import { Curso, CursoService } from 'app/features/coordenador/curso/curso/curso.service';
+import { Curso, CursoService } from '../curso-list/curso.service';
 
 @Component({
   standalone: true,
   selector: 'app-curso-list',
   imports: [CommonModule, RouterModule],
   templateUrl: './curso-list.component.html',
-  styleUrls: ['./curso-list.component.scss']
+  styleUrls: ['./curso-list.component.scss'],
+  providers: [CursoService]
 })
 export class CursoListComponent implements OnInit {
   cursos: Curso[] = [];
@@ -24,11 +25,11 @@ export class CursoListComponent implements OnInit {
   carregar(): void {
     this.loading = true;
     this.service.listar().subscribe({
-      next: (res: any) => {
+      next: (res: Curso[]) => {
         this.cursos = res;
         this.loading = false;
       },
-      error: (err: any) => {
+      error: () => {
         this.error = 'Erro ao buscar cursos';
         this.loading = false;
       }
@@ -41,7 +42,7 @@ export class CursoListComponent implements OnInit {
 
   deletar(id: number): void {
     if (confirm('Deseja remover este curso?')) {
-      this.service.deletar(id).subscribe(() => this.carregar());
+      this.service.excluir(id).subscribe(() => this.carregar());
     }
   }
 }

@@ -5,7 +5,7 @@ import {
   HttpHandler,
   HttpEvent,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, from, Observable, switchMap, throwError } from 'rxjs';
 import { KeycloakService } from './keycloak.service';
 
 @Injectable()
@@ -13,11 +13,19 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private keycloak: KeycloakService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.keycloak.getToken();
-    const headers = token
-      ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
-      : req;
-
-    return next.handle(headers);
+    return from(this.keycloak.getValidToken()).pipe(
+      switchMap(token => {
+        const cloned = req.clone({
+          setHeaders: { Authorization: `Bearer ${token}` }
+        });
+        return next.handle(cloned);
+      }),
+      catchError(error => {
+        console.error('Erro no interceptor:', error);
+        return throwError(() => error);
+      })
+    );
   }
+
 }
+

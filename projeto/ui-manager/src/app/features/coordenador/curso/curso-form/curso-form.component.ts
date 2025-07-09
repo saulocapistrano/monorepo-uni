@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Curso, CursoService } from 'app/features/coordenador/curso/curso/curso.service';
+import { Curso, CursoService } from '../curso-list/curso.service';
 
 @Component({
   standalone: true,
   selector: 'app-curso-form',
   imports: [CommonModule, FormsModule],
   templateUrl: './curso-form.component.html',
-  styleUrls: ['./curso-form.component.scss']
+  styleUrls: ['./curso-form.component.scss'],
+  providers: [CursoService]
 })
 export class CursoFormComponent {
   curso: Curso = { nome: '', descricao: '' };
