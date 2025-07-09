@@ -1,6 +1,7 @@
 {
   "realm": "academico-realm",
   "enabled": true,
+  "loginTheme": "academico-theme",
   "users": [
     {
       "username": "admin@academico.com",
